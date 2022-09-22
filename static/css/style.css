@@ -11,8 +11,10 @@ body {
   font-family: 'Playfair Display', serif;
   color: white;
   padding: 10px;
+  text-align: center;
 }
 #navigationBar {
+  border-radius: 25px;
   background:#444;
   box-shadow:0px 1px 10px 10px #ddd;
   height:auto;
@@ -40,4 +42,31 @@ body {
   color: white;
   font-size: 24px;
   font-family: 'Montserrat', serif;
+}
+
+
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+
+.button {
+  background-color: #FA7070; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+.button:hover {
+  background-color:#b85656;
 }
