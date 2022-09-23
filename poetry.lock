@@ -138,6 +138,20 @@ Flask = ">=0.8"
 visitor = "*"
 
 [[package]]
+name = "flask-ipban"
+version = "1.1.5"
+description = "URL spam security for Flask."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+flask = ">=0.11"
+itsdangerous = "*"
+pyyaml = "*"
+requests = "*"
+
+[[package]]
 name = "flask-wtf"
 version = "1.0.1"
 description = "Form rendering, validation, and CSRF protection for Flask with WTForms."
@@ -357,6 +371,14 @@ gen_docs = ["pytoolconfig", "sphinx-rtd-theme (>=1.0.0)", "sphinx-autodoc-typehi
 doc = ["sphinx (>=4.5.0)", "tabulate (>=0.8.9)"]
 
 [[package]]
+name = "pyyaml"
+version = "6.0"
+description = "YAML parser and emitter for Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "replit"
 version = "3.2.4"
 description = "A library for interacting with features of repl.it"
@@ -528,7 +550,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "282c8fc70236d0a338700e664928be003019831d0e2598f81e0188fa6b326403"
+content-hash = "e218fc241f38837855b99cd0126ed1a0fe72c61c24144d5ab61e04835a16b161"
 
 [metadata.files]
 aiohttp = []
@@ -543,6 +565,7 @@ debugpy = []
 dominate = []
 flask = []
 flask-bootstrap = []
+flask-ipban = []
 flask-wtf = []
 frozenlist = []
 idna = []
@@ -560,6 +583,7 @@ pyparsing = []
 python-lsp-jsonrpc = []
 python-lsp-server = []
 pytoolconfig = []
+pyyaml = []
 replit = []
 requests = []
 rope = []

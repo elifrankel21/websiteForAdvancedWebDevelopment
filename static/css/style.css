@@ -68,5 +68,15 @@ body {
 
 
 .button:hover {
-  background-color:#b85656;
+  background-color:#FA7070;
+}
+
+
+
+
+.navbar {
+  border-radius: 25px;
+  background:#444;
+  text-align:center;
+
 }
