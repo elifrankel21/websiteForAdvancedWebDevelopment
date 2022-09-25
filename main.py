@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired
 import os
 import smtplib
 import time
+import requests
 SECRET_KEY = os.urandom(32)
 #stack overflow fucked me over
 app = Flask(__name__)
@@ -68,7 +69,7 @@ def booking_an_appointment():
       port = 587  # For starttls
       smtp_server = "smtp.gmail.com"
       sender_email = "noreplypython0@gmail.com"
-      receiver_email = ["maracuchoamericano@gmail.com", "elifrankel4@gmail.com"]
+      receiver_email = ["elifrankel4@gmail.com"] #maracuchoamericano@gmail.com
       password = "dielepwyvzykhvti"
       message = f"A person has requested to gain access to the website. Name. {appointment_form.name.data}\n School Email. {appointment_form.email.data}\n  Why they want to join. {appointment_form.resume.data}\n Username: {appointment_form.username.data}\nPassword: {appointment_form.password.data}"
 
