@@ -6,7 +6,7 @@ ul{
   font-size: 24;
 }
 body {
-   background-image: url("https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg");
+   background-image: url("https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg");
    background-size: 100%;
   font-family: 'Playfair Display', serif;
   color: white;
@@ -79,4 +79,13 @@ body {
   background:#444;
   text-align:center;
 
+}
+
+
+#slope-game {
+  height: 950px;
+  width: 950px;
+  
+
+  
 }

@@ -11,36 +11,89 @@
     <title>Games</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+
+
+
+
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div>
+   <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/">Eli's Games</a>
 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/slope">Slope</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pricing">Pricing</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+<div>
+<script>
+function login() {
+var proceed = false;
+    while(!proceed) 
+    {
+        tag = prompt("Please input the string:");
+        if (typeof(tag) == "string") 
+        {
+            tag = tag.trim();
+
+
+            if (tag=="")//// no value
+            {
+                proceed = false;
+                alert('Invalid entry!!! If you want to gain access to the games go to /request and fill out the form ');
+            }
+            if (tag=="eli 3704")
+            {
+              proceed=true;
+              
+
+            }
+        }
+        if (tag===null) ////cancel hits
+        {
+            proceed = false;
+            alert('Login = bad retry !!!');
+            return login();
+        }
+    }
+    if(proceed)
+    {
+      alert("Hello, You are now in games")
+    }
+}
+//login()
+  
+</script>
+
+  
+
+<iframe width= "850" height="850"src="https://slope.ebkvorso.repl.co/" title="slope"></iframe>
 
 
     
-  </body>
+</body>

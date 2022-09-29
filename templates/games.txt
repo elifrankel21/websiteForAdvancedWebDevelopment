@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12" id="slope-game">
+      <iframe width= "850" height="850"src="https://slope.ebkvorso.repl.co/" title="slope"></iframe>
+    </div>
+  </div>
+</div>

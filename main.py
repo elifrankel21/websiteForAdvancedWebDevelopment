@@ -4,47 +4,131 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import os
-import smtplib
 import time
 import requests
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+# I a backing everything up and going to work on a js login system for now so that if saves to cookies and they cannot even see the website without it so that if a teacher trys to get on they cannot even see it.
+
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///users.db"
+
+db = SQLAlchemy(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+login_manager.init_app(app)
+
+
+
 SECRET_KEY = os.urandom(32)
 #stack overflow fucked me over
-app = Flask(__name__)
+
 app.config['SECRET_KEY'] = SECRET_KEY
 bootstrap = Bootstrap(app)
 
-class AppointmentForm(FlaskForm):
+
+class User(UserMixin, db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  username = db.Column(db.String(20), unique=True,nullable=False)
+  email = db.Column(db.String(100), unique=True,nullable=False)
+  password = db.Column(db.String(20), unique=False,nullable=False)
+
+
+
+
+
+
+
+# new_user = User(username="eli", email="fakeemail@gmail.com", password="3704")
+
+# db.session.add(new_user)
+# db.session.commit()
+  
+
+@login_manager.user_loader
+def load_user(user_id):
+  return User.query.get(int(user_id)) 
+
+class Register(FlaskForm):
   name = StringField(label="Name:", validators=[DataRequired()])
   email = StringField(label="School Email", validators=[DataRequired()])
-  resume = StringField(label="Why do you want access to this website?", validators=[DataRequired()]) 
-  username = StringField(label="What do you want your username to be?", validators=[DataRequired()]) 
-  password = StringField(label="What do you want yout password to be?", validators=[DataRequired()]) 
+  password = StringField(label="Password:", validators=[DataRequired()])
   submit = SubmitField(label="Submit")
+  
+
+
+  
+@app.route("/request", methods=["GET","POST"])
+def register():
+    form = Register()
+    if request.method == "POST":
+      #this generates hashed password and salting to make it less easy to attempt to hack into the website and steal an account (thought it would be cool to add)
+        hash_and_salted_password = generate_password_hash(
+            request.form.get('password'),
+            method='pbkdf2:sha256',
+            salt_length=8
+        )
+      #this uses the User() class to add it to the database (so they can log in, in the future)
+        new_user = User(
+            email=request.form.get('email'),
+            username=request.form.get('name'),
+            password=hash_and_salted_password,
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
+      #This tells the website that the user has already logged in and is now authenticated to go to /games
+        login_user(new_user)
+
+      
+        return redirect("/games")
+    return render_template("register.html", form=form)
+  
+
+
+  
 
 
 
 
 
+
+
+
+#form that users are required to use to log in
 class Login(FlaskForm):
-  username = StringField("Username", [DataRequired()])
+  username = StringField("Email", [DataRequired()])
   password = StringField("Password", [DataRequired()])
   submit = SubmitField("Login")
 @app.route("/signup", methods=["GET","POST"])
-def signup():
+def login():
   form = Login()
   if form.validate_on_submit():
-    if form.username.data == "eli" and form.password.data == "3704":
-     level = 3
-     return redirect("/games")
-  if form.validate_on_submit():
-    if form.username.data == "annak" and form.password.data == "8625":
-     return redirect("/games")
-    else:
-       return redirect("https://i.ytimg.com/vi/L7yDR_8sHFs/maxresdefault.jpg") #send you to a meme about worng password
-  
+    if request.method == "POST":
+      email = request.form.get("email")
+      print(email)
+      password = request.form.get("password")
+      print(password)
+
+
+      user = User.query.filter_by(email=email).first()
+
+      if check_password_hash(user.password, password):
+        login_user(user)
+        return redirect("/games")
+
   
   
   return render_template("index.html", form=form)
+
+#for some reason the login_required thing isnt working, will try to fix
+#werid (I am def not on tiktok rn)
+@login_required
 @app.route("/games")
 def games():
   return render_template("games.html")
@@ -58,34 +142,40 @@ def welcome():
 
 
 
-@app.route("/book_an_appointment", methods=["GET","POST"])
-def booking_an_appointment():
-    appointment_form = AppointmentForm()
-    if appointment_form.validate_on_submit():
-      c_name = appointment_form.name.data
-      c_email = appointment_form.email.data
-      c_username = appointment_form.username.data
+# @app.route("/request", methods=["GET","POST"])
+# def booking_an_appointment():
+#     appointment_form = AppointmentForm()
+#     if appointment_form.validate_on_submit():
+#       c_name = appointment_form.name.data
+#       c_email = appointment_form.email.data
+#       c_username = appointment_form.username.data
       
-      port = 587  # For starttls
-      smtp_server = "smtp.gmail.com"
-      sender_email = "noreplypython0@gmail.com"
-      receiver_email = ["elifrankel4@gmail.com"] #maracuchoamericano@gmail.com
-      password = "dielepwyvzykhvti"
-      message = f"A person has requested to gain access to the website. Name. {appointment_form.name.data}\n School Email. {appointment_form.email.data}\n  Why they want to join. {appointment_form.resume.data}\n Username: {appointment_form.username.data}\nPassword: {appointment_form.password.data}"
+#       port = 587  # For starttls
+#       smtp_server = "smtp.gmail.com"
+#       sender_email = "noreplypython0@gmail.com"
+#       receiver_email = ["elifrankel4@gmail.com"] #maracuchoamericano@gmail.com
+#       password = "dielepwyvzykhvti"
+#       message = f"A person has requested to gain access to the website. Name. {appointment_form.name.data}\n School Email. {appointment_form.email.data}\n  Why they want to join. {appointment_form.resume.data}\n Username: {appointment_form.username.data}\nPassword: {appointment_form.password.data}"
 
-      with smtplib.SMTP(smtp_server, port) as server:
-        server.ehlo()
-        server.starttls()
-        server.ehlo() 
-        server.login(sender_email, password)
-        for person in receiver_email:
-          server.sendmail(sender_email, person, msg=message)
-
-
-      return redirect("/")
-    return render_template("book.html", form=appointment_form)
+#       with smtplib.SMTP(smtp_server, port) as server:
+#         server.ehlo()
+#         server.starttls()
+#         server.ehlo() 
+#         server.login(sender_email, password)
+#         for person in receiver_email:
+#           server.sendmail(sender_email, person, msg=message)
 
 
+#       return redirect("/")
+#     return render_template("book.html", form=appointment_form)
+
+
+
+
+@app.route("/slope")
+def slope():
+
+  return render_template("slope.html")
 
 
 
