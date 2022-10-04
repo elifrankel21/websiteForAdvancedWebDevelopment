@@ -9,6 +9,7 @@ import requests
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+import pandas
 # I a backing everything up and going to work on a js login system for now so that if saves to cookies and they cannot even see the website without it so that if a teacher trys to get on they cannot even see it.
 
 app = Flask(__name__)
@@ -61,33 +62,51 @@ class Register(FlaskForm):
   
 
 
-  
+
 @app.route("/request", methods=["GET","POST"])
 def register():
-    form = Register()
-    if request.method == "POST":
-      #this generates hashed password and salting to make it less easy to attempt to hack into the website and steal an account (thought it would be cool to add)
-        hash_and_salted_password = generate_password_hash(
-            request.form.get('password'),
-            method='pbkdf2:sha256',
-            salt_length=8
-        )
-      #this uses the User() class to add it to the database (so they can log in, in the future)
-        new_user = User(
-            email=request.form.get('email'),
-            username=request.form.get('name'),
-            password=hash_and_salted_password,
-        )
+  form = Register()
+  if request.method == "POST":
+    if form.validate_on_submit():
+      email = request.form.get('email')
+      password = request.form.get('password')
+      name = request.form.get('name')
+      file = open("users.txt", "a")
+      file.write(f"{email},{name},{password}")
+      return redirect("/games")
+      
+      
+  
+  return render_template("register.html",form=form)
+ 
 
-        db.session.add(new_user)
-        db.session.commit()
+  
+# @app.route("/request", methods=["GET","POST"])
+# def register():
+#     form = Register()
+#     if request.method == "POST":
+#       #this generates hashed password and salting to make it less easy to attempt to hack into the website and steal an account (thought it would be cool to add)
+#         hash_and_salted_password = generate_password_hash(
+#             request.form.get('password'),
+#             method='pbkdf2:sha256',
+#             salt_length=8
+#         )
+#       #this uses the User() class to add it to the database (so they can log in, in the future)
+#         new_user = User(
+#             email=request.form.get('email'),
+#             username=request.form.get('name'),
+#             password=hash_and_salted_password,
+#         )
 
-      #This tells the website that the user has already logged in and is now authenticated to go to /games
-        login_user(new_user)
+#         db.session.add(new_user)
+#         db.session.commit()
+
+#       #This tells the website that the user has already logged in and is now authenticated to go to /games
+#         login_user(new_user)
 
       
-        return redirect("/games")
-    return render_template("register.html", form=form)
+#         return redirect("/games")
+#     return render_template("register.html", form=form)
   
 
 
@@ -105,30 +124,28 @@ class Login(FlaskForm):
   username = StringField("Email", [DataRequired()])
   password = StringField("Password", [DataRequired()])
   submit = SubmitField("Login")
-@app.route("/signup", methods=["GET","POST"])
+
+  
+@app.route("/login", methods=["GET","POST"])
 def login():
   form = Login()
   if form.validate_on_submit():
     if request.method == "POST":
       email = request.form.get("email")
-      print(email)
       password = request.form.get("password")
-      print(password)
-
-
-      user = User.query.filter_by(email=email).first()
-
-      if check_password_hash(user.password, password):
-        login_user(user)
-        return redirect("/games")
-
-  
-  
+      df = pandas.read_csv("users.txt")
+      email_check = df["email"].loc[email]
+      if email_check == None:
+        return "<h1>That email does not exist</h1>"
+      else:
+        password_csv = df[email_check]["password"]
+        if password == password_csv:
+          return redirect("/games")
+          
   return render_template("index.html", form=form)
 
-#for some reason the login_required thing isnt working, will try to fix
-#werid (I am def not on tiktok rn)
-@login_required
+
+
 @app.route("/games")
 def games():
   return render_template("games.html")
@@ -138,7 +155,9 @@ def games():
 @app.route("/")
 def welcome():
   return render_template("welcome_page.html")
-
+@app.route("/testing")
+def testing():
+  return render_template("testing.html")
 
 
 
@@ -174,11 +193,10 @@ def welcome():
 
 @app.route("/slope")
 def slope():
-
   return render_template("slope.html")
-
-
-
+@app.route("/chat")
+def chat():
+  return render_template("chat.html")
 app.run(debug=True, host='0.0.0.0')
 
 

@@ -1,0 +1,119 @@
+body {
+  text-align: center;
+}
+
+.box {
+  margin-top:50px;
+  margin-bottom: 50px;
+  outline-style: double;
+}
+
+#logo {
+  font-family: 'Alkalami', serif;
+  
+}
+
+
+.top-container {
+  background-color: 	#292929;
+  
+}
+
+
+.big-header{
+  font-family: 'Alkalami', serif;
+  padding-top: 100px;
+  padding-bottom:100px;  
+  color:#ffa31a;
+}
+
+#features {
+  color: 	#808080;
+  
+}
+
+.middle-container {
+  	background-color: 	#ffa31a;
+
+  
+}
+
+
+.features-title {
+  font-family: 'Alkalami', serif;
+  padding-top: 50px;
+  color:#808080;
+  
+}
+
+.features-text {
+  font-family: 'Roboto', sans-serif;
+  color:#292929;
+  padding-top: 50px;
+  line-height: 2.5;
+  
+  
+
+  
+}
+
+#space-filler {
+  padding-bottom: 200px;
+
+  
+}
+
+#testimonials {
+  background-color: #ef8172;
+}
+
+.testimonial-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.testimonial-image {
+  width: 10%;
+  margin: 20px;
+}
+
+.bottom-container {
+  background-color: 	#292929;
+  
+}
+
+#bottom-container-text {
+  color:#ffa31a;
+
+  
+}
+
+
+.girl-img {
+  width: 30%;
+  height: 30%;
+
+  
+}
+
+.sponsors {
+  background-color: #808080;
+
+  
+}
+
+.sponsor-image {
+  width: 85%;
+  height: 85%;
+
+  
+}
+
+
+#sponsor-text {
+  color: 	#ffa31a;
+  padding-bottom:75px;
+  padding-top:50px;
+
+  
+}

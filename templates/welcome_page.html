@@ -6,35 +6,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Welcome</title>
-    <link rel="stylesheet" href="static/css/style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
   font-family: 'Playfair Display', serif;
       </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkalami&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
-    <main>
-    <nav id="navigationBar">
-  <ul>
-    <a href="#" class="logo">Eli & Sebastian</a>
-    <li>
-      <a href="#" class="link">Home</a>
-    </li>
-    <li>
-      <a href="#" class="link">About</a>
-    </li>
-    <li>
-      <a href="#" class="link">Contact</a>
-    </li>
-    <li>
-      <a href="/games" class="link">Games</a>
-    </li>
-  </ul>
-</nav> 
-</main>
 
-<div class="center-screen">
+
+
+
+
+      
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffa31a">
+    <a class="navbar-brand" id="logo" href="/">Schoolhub</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/games">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/request">Register</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+<section class="top-container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="big-header" id="space-filler"> Are you failing school?</h1>
+    </div>
+  </div>
+  
+</section>
+
+<section class="middle-container">
+  <div class="container-fluid" id="space-filler">
+    <div class="row">
+      <div class="col-lg-4" id="features-container">
+        <div class="box">
+        <h3 class="features-title">Best Math Help</h3>
+        <p class="features-text">We have the best help you could ever ask for, just ask for our testimonials!</p>
+        </div>
+      </div>
+      <div class="col-lg-4" id="features-container">
+        <div class="box">
+          <h3 class="features-title">Unlimited support</h3>
+          <p class="features-text">We have support 24/7. Simply give us a call and we will help you</p> <br>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="box">
+          <h3 class="features-title"> Time back Guarantee</h3>
+          <p class="features-text">If you don't get an A on your test, Sebastian will do 25 pushups.<br></br></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-container">
+
+  <div id="testimonial-carousel" class="carousel slide" data-ride="false">
+    <h1 id="space-filler"></h1>
+      <div class="carousel-inner">
+        <div class="carousel-item active container-fluid">
+          <h2 class="testimonial-text" id="bottom-container-text">I no longer fail my classes. Thank you SchoolHub!</h2>
+          <img class="testimonial-image girl-img" id="bottom-container-text" src="https://img.freepik.com/free-photo/young-scientist-girl-with-blackboard-background_53876-144818.jpg?size=626&ext=jpg" alt="girl-profile">
+          <em id=bottom-container-text>"Beth Harmon, Chess Prodigy"</em>
+        </div>
+        <div class="carousel-item container-fluid">
+          <h2 class="testimonial-text" id="bottom-container-text">I used to suffer from a Math Std called Algebra. Schoolhub saved me. I think.</h2>
+          <img class="testimonial-image girl-img" src="https://img.freepik.com/free-photo/parquet-theory-pupil-alarm-clock-pencil_1134-1125.jpg?w=996&t=st=1664830539~exp=1664831139~hmac=7a05e4a546efcb4f47dfea7a91c2abd1c3addff05691564b93f6a62d59bb312a" alt="lady-profile">
+          <em id="bottom-container-text">"I dont take showers, they dont take me" - Abraham Lincoln</em>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+      </a>
+    <h1 id="space-filler"></h1>
+    </div>
+
+</section>
+
+<section class="sponsors">
+  <h1 class="features-title" id="sponsor-text">Thank you to all our sponsors</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2">
+        <img class="sponsor-image" src="https://images.squarespace-cdn.com/content/v1/5e52ed01e2a4da55fcf8bea7/1620059472853-H8Z05X82H0JGE2AN65J3/Samsung.png">
+      </div>
+      <div class="col-lg-2">
+        <img class="sponsor-image" src="https://makerfaire.com/wp-content/uploads/2016/03/Intel-BA-Sponsor-Logo.png">
+      </div>
+      <div class="col-lg-2">
+        <img class="sponsor-image" src="https://louisvillezoo.org/wp-content/uploads/2021/10/Sponsor-logos-Kroger-size-corrected.png">
+      </div>
+      <div class="col-lg-2">
+        <img class="sponsor-image" src="https://1.bp.blogspot.com/-blLe6F5HR14/YAXJ1w8mPNI/AAAAAAAC2CU/f8SKTGEbHwI62jTb_r6DonhaO-irVDLVQCNcBGAsYHQ/s738/football-sponsors-logos%2B%252810%2529.png">
+      </div>
+      <div class="col-lg-2">
+        <img class="sponsor-image" src="http://collegefootballplayoff.com/images/2021/9/7/sponsors_1920x1080_Allstate.png">
+      </div>
+      <div class="col-lg-2">
+        <img class="sponsor-image" src="https://m.nascar.com/wp-content/uploads/sites/7/2018/02/Sunoco.png">
+      </div>
+        
+    </div>
+  </div>
+  
+
+</section>
+
+    
+
+  </body>
+    
+    
+    
+    
+    
+    
+
+    
+
+<!-- <div class="center-screen">
   <a href="/signup" class="button">Login</a>
   <h5>or</h5>
   <a href="/request" class="button">Request Access</a>
@@ -43,4 +169,4 @@
 </body>
 	<script src="index.js"></script>
   </body>
-</html>
+</html> -->
