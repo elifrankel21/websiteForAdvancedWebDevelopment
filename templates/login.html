@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width = device-width">
+    <title>I hope that the Google login thing works</title>
+    <link href = "static/css/login.css" rel = "stylesheet" type = "text/css"/>
+  </head>
+  <body>
+		<!--Login boi-->
+		<input type="email" placeholder="Email" id="email" />
+		<input type="password" placeholder="Password" id="password" />
+		<br/>
+		<button type="submit" onclick="signUp()" id="signUp">Sign Up</button>
+		<button type="submit" onclick="signIn()" id="signIn">Sign In</button>
+		<button type="submit" onclick="signOut()" id="signOut">Sign Out</button>
+		<!--Firebase-->
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script
+      src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+    <script
+      src = "https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"
+    ></script>
+		<script>
+    /*Biggol thing that I may not use*/
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+	 apiKey: "AIzaSyBHRlimYLapjeIajxjzx1peCdfxXTRVHxY",
+  authDomain: "websiteforadvwebtools.firebaseapp.com",
+  projectId: "websiteforadvwebtools",
+  storageBucket: "websiteforadvwebtools.appspot.com",
+  messagingSenderId: "383256661921",
+  appId: "1:383256661921:web:8a9c67e05b4099a36085e0",
+  measurementId: "G-M63R4JSXBN"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+/*Ze code*/
+const auth = firebase.auth();
+
+function signUp() {
+	var email = document.getElementById('email');
+	var password = document.getElementById('password');
+	const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+	promise.catch(e => alert(e.message));
+	alert('Signed Up!');
+}
+
+function signIn() {
+	var email = document.getElementById('email');
+	var password = document.getElementById('password');
+	const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+	promise.catch(e => alert(e.message));
+	alert('Signed In as ' + email.value);
+}
+
+function signOut() {
+	var email = "";
+	var password = ""
+	auth.signOut();
+	alert("Signed Out. See You Later!");
+}
+    </script>
+  </body>
+</html>
+<style>
+*{
+  padding: 15px;
+  margin-top: 10px;
+}
+</style>

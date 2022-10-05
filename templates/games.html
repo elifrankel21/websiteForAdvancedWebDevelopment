@@ -1,73 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Games</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-
-
-
-
-
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/static/css/games.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkalami&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200&display=swap" rel="stylesheet">
   </head>
-  <body></body>
-<script>
-function login() {
-var proceed = false;
-    while(!proceed) 
-    {
-        tag = prompt("Please input the string:");
-        if (typeof(tag) == "string") 
-        {
-            tag = tag.trim();
+  
+<html>
+
+<!--   Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffa31a">
+    <a class="navbar-brand" id="logo" href="/">Schoolhub</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto">
+<!--             <li class="nav-item">
+              <a class="nav-link" href="/games">Games</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/request">Register</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+<!--   Navbar finished -->
 
 
-            if (tag=="")//// no value
-            {
-                proceed = false;
-                alert('Invalid entry!!! If you want to gain access to the games go to /request and fill out the form ');
-            }
-            if (tag=="eli 3704")
-            {
-              proceed=true;
-              
+<!--   Container of games -->
+  <section class="background">
+    <h1 class="title" id="main-title">Try out some fan favorites!</h1>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <img class="game-image"src="https://cdn.kastatic.org/ka-perseus-graphie/11a47b3375a0e6477a5a41c7aedc90f840cbfd72.svg"></img>
+            <h4 class="game-title"><a href="/slope">Slope</a></h4>
+            <p class="game-description">A never-ending ball based game.</p>
+          </div>
+        </div>
+<!--           Filler spaces (to make game things smaller) -->
+        <div class="col-lg-4">
+          <div class="card">
+            <img class="game-image"src="https://img.freepik.com/premium-vector/tic-tac-toe-game-with-cross-circle-mini-game-vector-illustration_199784-546.jpg?w=2000"></img>
+            <h4 class="game-title"><a href="/tictactoe">Tictactoe</a></h4>
+            <p class="game-description">A True Classic.</p>
+          </div>  
+          </div>  
+        
 
-            }
-        }
-        if (tag===null) ////cancel hits
-        {
-            proceed = false;
-            alert('Login = bad retry !!!');
-            return login();
-        }
-    }
-    if(proceed)
-    {
-      alert("Hello, You are now in games")
-    }
-}
-  else{
-      proceed = false;
-  }
-//login()
-  login()
-</script>
-<a href="http://www.google.com"><img src=" https://www.thebankofmaine.com/images/android-app-on-google-play.png" /></a>
+        
+         <div class="col-lg-4">
+          <div class="card">
+            <img class="game-image"src="https://gamemedia.armorgames.com/18453/icn_heroimage.png"></img>
+            <h4 class="game-title"><a href="/onetrickmage">One Trick Mage</a></h4>
+            <p class="game-description">A Fun, Arcady game if you want to think.</p>
+          </div>
+        </div>
+          
+        </div>
+      <h1 id='space-filler'>
+      <h1 class="main-title">Still not interested?</h1>
+        <h4>Click <a href="/requestgame">here </a>to request a game</h4>
+        
+          
+        
+    
+          </section>
+
+
+
+
+
+
+
+
+  
+</html>

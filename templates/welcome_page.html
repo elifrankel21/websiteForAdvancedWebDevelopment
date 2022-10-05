@@ -1,6 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4N2P6J09S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X4N2P6J09S');
+</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+    <script>
+      import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+// TODO: Replace the following with your app's Firebase project configuration
+// See: https://firebase.google.com/docs/web/learn-more#config-object
+const firebaseConfig = {
+  // ...
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app);
+
+    </script>
     <script src="block.py"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +42,7 @@
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
   font-family: 'Playfair Display', serif;
       </style>
+    {% block html_head %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento" rel="stylesheet">
@@ -26,6 +58,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alkalami&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    {% endblock %}
   </head>
   <body>
 
@@ -44,9 +77,9 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+<!--             <li class="nav-item">
               <a class="nav-link" href="/games">Games</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
             </li>
@@ -85,7 +118,7 @@
       <div class="col-lg-4">
         <div class="box">
           <h3 class="features-title"> Time back Guarantee</h3>
-          <p class="features-text">If you don't get an A on your test, Sebastian will do 25 pushups.<br></br></p>
+          <p class="features-text">If you don't get an A on your test, we will do 25 pushups.<br></br></p>
         </div>
       </div>
     </div>
@@ -103,7 +136,7 @@
           <em id=bottom-container-text>"Beth Harmon, Chess Prodigy"</em>
         </div>
         <div class="carousel-item container-fluid">
-          <h2 class="testimonial-text" id="bottom-container-text">I used to suffer from a Math Std called Algebra. Schoolhub saved me. I think.</h2>
+          <h2 class="testimonial-text" id="bottom-container-text">I used to suffer from a Math <a class="invisible-link" href="/games">STD</a> called Algebra. Schoolhub saved me. I think.</h2>
           <img class="testimonial-image girl-img" src="https://img.freepik.com/free-photo/parquet-theory-pupil-alarm-clock-pencil_1134-1125.jpg?w=996&t=st=1664830539~exp=1664831139~hmac=7a05e4a546efcb4f47dfea7a91c2abd1c3addff05691564b93f6a62d59bb312a" alt="lady-profile">
           <em id="bottom-container-text">"I dont take showers, they dont take me" - Abraham Lincoln</em>
         </div>
