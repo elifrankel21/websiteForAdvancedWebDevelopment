@@ -10,74 +10,85 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import pandas
 from replit import db
-
-
-# I a backing everything up and going to work on a js login system for now so that if saves to cookies and they cannot even see the website without it so that if a teacher trys to get on they cannot even see it.
+import smtplib
+import random
 
 app = Flask(__name__)
-
-
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 bootstrap = Bootstrap(app)
 
-
+class LoginForm(FlaskForm):
+  name = StringField(label="Username:", validators=[DataRequired()])
+  password = StringField(label="Password:", validators=[DataRequired()])
+  submit = SubmitField(label="Submit", validators=[DataRequired()])
 
 
 @app.route("/login", methods=["GET","POST"])
 def login():
-  return render_template("login.html",)
+  form = LoginForm()
+  if form.validate_on_submit():
+      name = form.name.data
+      password_form = form.password.data
+      name_check = str(db.get(name))
+      password_form = str(password_form)
+      if name_check == password_form:
+        global onetimepass
+        onetimepass = random.randint(1,6924200000)
+        return redirect(f"/games/{onetimepass}")
+      else:
+        return redirect("/error") 
+      
+    
+  
+  return render_template("login.html",form=form)
 
 
 
-@app.route("/games")
-def games():
-  return render_template("games.html")
+@app.route("/cookieclickerurl/<password>")
+def cookie_clicker(password):
+  if password == str(onetimepass):
+    return render_template("cookieclicker.html")
+  else:
+    return redirect("/")
+    
 
+@app.route("/minecraft")
+def minecraft():
+    return render_template("minecraft.html")
+
+@app.route("/error")
+def error():
+  return render_template("error.html")
+    
+  
+
+
+
+@app.route("/games/<password>")
+def games(password):  
+  if password == str(onetimepass):
+    return render_template("games.html",cookieclickerurl=f"/cookieclickerurl/{password}",slope=f"/slope/{onetimepass}",tictactoe=f"/tictactoe/{tictactoe}")
+  else:
+    return redirect("/")
 
 
 @app.route("/")
 def welcome():
   return render_template("welcome_page.html")
-@app.route("/testing")
+@app.route("/quick")
 def testing():
-  return render_template("testing.html")
+  return render_template("quickdraw.html")
 
 
 
-# @app.route("/request", methods=["GET","POST"])
-# def booking_an_appointment():
-#     appointment_form = AppointmentForm()
-#     if appointment_form.validate_on_submit():
-#       c_name = appointment_form.name.data
-#       c_email = appointment_form.email.data
-#       c_username = appointment_form.username.data
-      
-#       port = 587  # For starttls
-#       smtp_server = "smtp.gmail.com"
-#       sender_email = "noreplypython0@gmail.com"
-#       receiver_email = ["elifrankel4@gmail.com"] #maracuchoamericano@gmail.com
-#       password = "dielepwyvzykhvti"
-#       message = f"A person has requested to gain access to the website. Name. {appointment_form.name.data}\n School Email. {appointment_form.email.data}\n  Why they want to join. {appointment_form.resume.data}\n Username: {appointment_form.username.data}\nPassword: {appointment_form.password.data}"
+@app.route("/slope/<password>")
+def slope(password):
+  if password == str(onetimepass):
+    return render_template("slope.html")
+  else:
+    return redirect("/")
 
-#       with smtplib.SMTP(smtp_server, port) as server:
-#         server.ehlo()
-#         server.starttls()
-#         server.ehlo() 
-#         server.login(sender_email, password)
-#         for person in receiver_email:
-#           server.sendmail(sender_email, person, msg=message)
-
-
-#       return redirect("/")
-#     return render_template("book.html", form=appointment_form)
-
-
-
-
-@app.route("/slope")
-def slope():
-  return render_template("slope.html")
 @app.route("/chat")
 def chat():
   return render_template("chat.html")
@@ -85,10 +96,10 @@ def chat():
 
 
 
-@app.route("/tictactoe")
-def tictactoe():
-  return render_template ('tictactoe.html')
-
+@app.route("/tictactoe/<password>")
+def tictactoe(password):
+  if password == str(onetimepass):
+    return render_template("tictactoe.html")
 
 @app.route("/onetrickmage")
 def onetrickmage():
@@ -120,13 +131,12 @@ def gamerequest():
           server.sendmail(sender_email, person, message)
         return redirect("/games")
   return render_template("gamerequest.html",form=form)
-    
-    
   
   
 
 
-app.run(debug=True, host='0.0.0.0')
+app.run(debug=True,host='0.0.0.0')
+
 
 
 

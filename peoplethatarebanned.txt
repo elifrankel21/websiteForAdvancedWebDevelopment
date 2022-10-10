@@ -1,0 +1,3 @@
+user,password,real name,id, reason
+Daniel,9434, daniel bernstein, n/a (dont know), I dont like them
+
