@@ -366,6 +366,29 @@ qa = ["flake8 (==3.8.3)", "mypy (==0.782)"]
 testing = ["docopt", "pytest (<6.0.0)"]
 
 [[package]]
+name = "pil-compat"
+version = "1.0.0"
+description = "Compatibility modules, bridging PIL -> Pillow"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pillow = "*"
+
+[[package]]
+name = "pillow"
+version = "9.2.0"
+description = "Python Imaging Library (Fork)"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-issues (>=3.0.1)", "sphinx-removed-in", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+
+[[package]]
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
@@ -699,7 +722,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "21f3339779653eb08e6b12b4ba81772907dfbc89a027ce6c24ca6080504eb167"
+content-hash = "f41bbeb9bb6c471f46a33090751d8d7572e9dabf54116a59b19c68ea2981f747"
 
 [metadata.files]
 aiohttp = []
@@ -734,6 +757,8 @@ onetimepass = []
 packaging = []
 pandas = []
 parso = []
+pil-compat = []
+pillow = []
 pluggy = []
 pyflakes = []
 pyparsing = []
