@@ -13,6 +13,7 @@ from replit import db
 import smtplib
 import random
 import Image
+import os
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -87,7 +88,7 @@ def login():
         password_form = str(password_form)
         if name_check == password_form:
             global onetimepass
-            onetimepass = random.randint(1, 69420)
+            onetimepass = random.randint(1, 69420420)
             return redirect(f"/games/{onetimepass}")
         else:
             return redirect("/error")
@@ -168,7 +169,6 @@ def tictactoe(password):
 def onetrickmage():
     return render_template("onetrickmage.html")
 
-
 class GameRequest(FlaskForm):
     game_requested = StringField(
         label="What game would you like added onto the website?",
@@ -210,6 +210,4 @@ def gamerequest():
                 server.sendmail(sender_email, person, message)
             return redirect(f"/games/{onetimepass}")
     return render_template("gamerequest.html", form=form)
-
-
 app.run(debug=True, host='0.0.0.0')
