@@ -13,7 +13,9 @@ from replit import db
 import smtplib
 import random
 import Image
-import os
+import json
+keys = db.keys()
+print(keys)
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -35,6 +37,8 @@ class RequestLogin(FlaskForm):
                            validators=[DataRequired()])
     password = StringField(label="What password do you want?",
                            validators=[DataRequired()])
+    tos = StringField(label="Y/N Follow all TOS",
+                           validators=[DataRequired()])
     submit = SubmitField(label="Submit")
 
 
@@ -48,6 +52,7 @@ def request():
         resume = form.resume.data
         username = form.username.data
         password_user = form.password.data
+        tos = form.tos.data
         port = 587
         smtp_server = "smtp.gmail.com"
         sender_email = "noreplypython0@gmail.com"
@@ -110,11 +115,6 @@ def zoqb(password):
         return render_template("2048.html")
     else:
         return redirect("/")
-
-
-@app.route("/minecraft")
-def minecraft():
-    return render_template("minecraft.html")
 
 
 # apply to join
@@ -183,9 +183,6 @@ class GameRequest(FlaskForm):
 # return None
 
 
-@app.route("/banhammer")
-def banuser():
-    return render_template("banhammer.html")
 
 
 @app.route("/requestgame", methods=["GET", "POST"])
@@ -210,4 +207,70 @@ def gamerequest():
                 server.sendmail(sender_email, person, message)
             return redirect(f"/games/{onetimepass}")
     return render_template("gamerequest.html", form=form)
+class BanForm(FlaskForm):
+    username = StringField(
+        label="Username: ",
+        validators=[DataRequired()])
+    reason = StringField(
+        label="Reason: ",
+        validators=[DataRequired()])
+    adminu = StringField(
+        label="Admin Username: ",
+        validators=[DataRequired()])    
+    adminp = StringField(
+        label="Admin Password: ",
+        validators=[DataRequired()])
+    submit = SubmitField(label="Submit Feedback")
+@app.route("/ban", methods=["GET", "POST"])
+def ban():
+  form = BanForm()
+  if form.validate_on_submit():
+    if (form.adminu.data == "eli" and form.adminp.data == "3704"):
+      del db[f"{form.username.data}"]
+      ###
+      user = form.username.data
+      reason = form.reason.data
+      
+      port = 587
+      smtp_server = "smtp.gmail.com"
+      sender_email = "noreplypython0@gmail.com"
+      receiver_email = [
+            "elifrankel4@gmail.com"
+        ] # "maracuchoamericano@gmail.com"
+      password = "dielepwyvzykhvti"
+      message = f"{form.username.data} Banned:\nReason: {form.reason.data}\n"
+      with smtplib.SMTP(smtp_server, port) as server:
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(sender_email, password)
+            for person in receiver_email:
+                server.sendmail(sender_email, person, message)
+  return render_template("banhammer.html", form=form)
+
+class AddUser(FlaskForm):
+    username = StringField(
+        label="Username: ",
+        validators=[DataRequired()])
+    password = StringField(
+        label="Password: ",
+        validators=[DataRequired()])
+    adminu = StringField(
+        label="Admin Username: ",
+        validators=[DataRequired()])    
+    adminp = StringField(
+        label="Admin Password: ",
+        validators=[DataRequired()])
+    submit = SubmitField(label="Submit Feedback")
+@app.route("/adduser", methods=["GET", "POST"])
+def UserAdd():
+  form = AddUser()
+  if form.validate_on_submit():
+    if (form.adminu.data == "eli" and form.adminp.data == "3704"):
+      db[f"{form.username.data}"] = f"{form.password.data}"
+      print(f"{form.username.data} has been added by and admin!")
+  return render_template("adduser.html", form=form)
+@app.route("/tos")
+def Tos():
+  return render_template("tos.html")
 app.run(debug=True, host='0.0.0.0')
